@@ -11,10 +11,10 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
+import EnhancedCard from "@/components/ui/enhanced-card";
 import { LampContainer } from "@/components/ui/lamp";
 import MagicBadge from "@/components/ui/magic-badge";
-import MagicCard from "@/components/ui/magic-card";
-import { COMPANIES, PROCESS } from "@/utils";
+import { COMPANIES, LINKIFY_BRAND, PROCESS } from "@/utils";
 import { REVIEWS } from "@/utils/constants/misc";
 import { currentUser } from "@clerk/nextjs/server";
 import { ArrowRightIcon, CreditCardIcon, StarIcon } from "lucide-react";
@@ -40,13 +40,13 @@ const HomePage = async () => {
 							<span className="backdrop absolute inset-[1px] rounded-full bg-neutral-950 transition-colors duration-200 group-hover:bg-neutral-900" />
 							<span className="absolute inset-x-0 bottom-0 h-full w-full bg-gradient-to-tr from-primary/20 blur-md"></span>
 							<span className="z-10 flex items-center justify-center gap-1 py-0.5 text-neutral-100 text-sm">
-								✨ Introduction Writora AI
+								✨ Introduction {LINKIFY_BRAND.name}
 								<ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
 							</span>
 						</button>
 						<h1 className="!leading-[1.15] w-full text-balance py-6 text-center font-heading font-medium text-5xl text-foreground tracking-normal sm:text-6xl md:text-7xl lg:text-8xl">
 							AI-Powered Blogs With{" "}
-							<span className="inline-bloc bg-gradient-to-r from-violet-500 to-fuchsia-500 bg-clip-text text-transparent">
+							<span className="inline-bloc bg-gradient-to-r from-linkify-500 to-linkify-600 bg-clip-text text-transparent">
 								Media
 							</span>
 						</h1>
@@ -133,8 +133,8 @@ const HomePage = async () => {
 							Manage Blogs Like a Pro
 						</h2>
 						<p className="mt-4 max-w-lg text-center text-lg text-muted-foreground lg:text-center">
-							Writora AI is a cutting-edge blog generation tool that delivers
-							content-driven blogs in just seconds.
+							{LINKIFY_BRAND.name} is a cutting-edge blog generation tool that
+							delivers content-driven blogs in just seconds.
 						</p>
 					</div>
 				</AnimationContainer>
@@ -163,14 +163,14 @@ const HomePage = async () => {
 				<div className="grid w-full grid-cols-1 gap-4 py-8 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
 					{PROCESS.map((process, id) => (
 						<AnimationContainer delay={0.2 * id} key={id}>
-							<MagicCard className="group md:py-8">
+							<EnhancedCard variant="subtle" className="p-6 md:p-8">
 								<div className="flex w-full flex-col items-start justify-center">
 									<process.icon
 										strokeWidth={1.5}
-										className="h-10 w-10 text-foreground"
+										className="h-10 w-10 text-primary"
 									/>
 									<div className="relative flex flex-col items-start">
-										<span className="-top-6 absolute right-0 flex h-12 w-12 items-center justify-center rounded-full border-2 border-border pt-0.5 font-medium text-2xl text-foreground">
+										<span className="-top-6 absolute right-0 flex h-12 w-12 items-center justify-center rounded-full border-2 border-border/30 bg-primary/10 pt-0.5 font-medium text-2xl text-foreground">
 											{id + 1}
 										</span>
 										<h3 className="mt-6 font-medium text-base text-foreground">
@@ -181,7 +181,7 @@ const HomePage = async () => {
 										</p>
 									</div>
 								</div>
-							</MagicCard>
+							</EnhancedCard>
 						</AnimationContainer>
 					))}
 				</div>
@@ -199,8 +199,8 @@ const HomePage = async () => {
 							Choose a plan that works for you
 						</h2>
 						<p className="mt-4 max-w-lg text-center text-lg text-muted-foreground lg:text-center">
-							Get started with Writora today and enjoy more features with our
-							pro plans.
+							Get started with {LINKIFY_BRAND.name} today and enjoy more
+							features with our pro plans.
 						</p>
 					</div>
 				</AnimationContainer>
@@ -231,7 +231,8 @@ const HomePage = async () => {
 							What our users are saying
 						</h2>
 						<p className="mt-4 max-w-lg text-center text-lg text-muted-foreground lg:text-center">
-							Here&apos;s what some of our users have to say about Writora.
+							Here&apos;s what some of our users have to say about{" "}
+							{LINKIFY_BRAND.name}.
 						</p>
 					</div>
 				</AnimationContainer>
@@ -239,13 +240,15 @@ const HomePage = async () => {
 					<div className="flex h-min flex-col items-start gap-6">
 						{REVIEWS.slice(0, 3).map((review, index) => (
 							<AnimationContainer delay={0.2 * index} key={index}>
-								<MagicCard key={index} className="md:p-0">
-									<Card className="flex h-min w-full flex-col border-none">
+								<EnhancedCard variant="spotlight" className="w-full">
+									<Card className="flex h-min w-full flex-col border-none bg-transparent">
 										<CardHeader className="space-y-0">
-											<CardTitle className="font-medium text-lg text-muted-foreground">
+											<CardTitle className="font-medium text-foreground text-lg">
 												{review.name}
 											</CardTitle>
-											<CardDescription>{review.username}</CardDescription>
+											<CardDescription className="text-muted-foreground">
+												{review.username}
+											</CardDescription>
 										</CardHeader>
 										<CardContent className="space-y-4 pb-4">
 											<p className="text-muted-foreground">{review.review}</p>
@@ -259,20 +262,22 @@ const HomePage = async () => {
 											))}
 										</CardFooter>
 									</Card>
-								</MagicCard>
+								</EnhancedCard>
 							</AnimationContainer>
 						))}
 					</div>
 					<div className="flex h-min flex-col items-start gap-6">
 						{REVIEWS.slice(3, 6).map((review, index) => (
 							<AnimationContainer delay={0.2 * index} key={index}>
-								<MagicCard key={index} className="md:p-0">
-									<Card className="flex h-min w-full flex-col border-none">
+								<EnhancedCard variant="spotlight" className="w-full">
+									<Card className="flex h-min w-full flex-col border-none bg-transparent">
 										<CardHeader className="space-y-0">
-											<CardTitle className="font-medium text-lg text-muted-foreground">
+											<CardTitle className="font-medium text-foreground text-lg">
 												{review.name}
 											</CardTitle>
-											<CardDescription>{review.username}</CardDescription>
+											<CardDescription className="text-muted-foreground">
+												{review.username}
+											</CardDescription>
 										</CardHeader>
 										<CardContent className="space-y-4 pb-4">
 											<p className="text-muted-foreground">{review.review}</p>
@@ -286,20 +291,22 @@ const HomePage = async () => {
 											))}
 										</CardFooter>
 									</Card>
-								</MagicCard>
+								</EnhancedCard>
 							</AnimationContainer>
 						))}
 					</div>
 					<div className="flex h-min flex-col items-start gap-6">
 						{REVIEWS.slice(6, 9).map((review, index) => (
 							<AnimationContainer delay={0.2 * index} key={index}>
-								<MagicCard key={index} className="md:p-0">
-									<Card className="flex h-min w-full flex-col border-none">
+								<EnhancedCard variant="spotlight" className="w-full">
+									<Card className="flex h-min w-full flex-col border-none bg-transparent">
 										<CardHeader className="space-y-0">
-											<CardTitle className="font-medium text-lg text-muted-foreground">
+											<CardTitle className="font-medium text-foreground text-lg">
 												{review.name}
 											</CardTitle>
-											<CardDescription>{review.username}</CardDescription>
+											<CardDescription className="text-muted-foreground">
+												{review.username}
+											</CardDescription>
 										</CardHeader>
 										<CardContent className="space-y-4 pb-4">
 											<p className="text-muted-foreground">{review.review}</p>
@@ -313,7 +320,7 @@ const HomePage = async () => {
 											))}
 										</CardFooter>
 									</Card>
-								</MagicCard>
+								</EnhancedCard>
 							</AnimationContainer>
 						))}
 					</div>

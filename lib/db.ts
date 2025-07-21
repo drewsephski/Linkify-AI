@@ -1,3 +1,4 @@
+// Legacy database connection function for raw SQL queries
 import { neon } from "@neondatabase/serverless";
 
 export default async function getDbConnection() {

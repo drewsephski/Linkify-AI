@@ -11,7 +11,7 @@ const Privacy = () => {
 					Last updated: 12th October 2024
 				</p>
 				<p className="mt-4">
-					At <strong>Wriota</strong>, we are committed to protecting your
+					At <strong>Linkify</strong>, we are committed to protecting your
 					privacy. This Privacy Policy explains how we collect, use, disclose,
 					and safeguard your information when you use our website and services.
 				</p>
@@ -173,7 +173,7 @@ const Privacy = () => {
 				</p>
 
 				<p className="mt-8 font-medium">
-					By using Writora, you acknowledge that you have read, understood, and
+					By using Linkify, you acknowledge that you have read, understood, and
 					agree to the terms of this Privacy Policy.
 				</p>
 			</AnimationContainer>

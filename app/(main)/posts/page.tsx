@@ -1,91 +1,177 @@
-import { AnimationContainer, MaxWidthWrapper } from "@/components/global";
-import {
-	Card,
-	CardContent,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from "@/components/ui/card";
-import MagicCard from "@/components/ui/magic-card";
-import getDbConnection from "@/lib/db";
-import { currentUser } from "@clerk/nextjs/server";
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
-import { redirect } from "next/navigation";
-import removeMd from "remove-markdown";
-export default async function Page() {
-	const user = await currentUser();
+"use client";
 
-	if (!user) {
-		return redirect("/sign-in");
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Post } from "@/lib/db/schema";
+import { cn } from "@/utils";
+import { format } from "date-fns";
+import { motion } from "framer-motion";
+import { Calendar, Edit, Eye, FileText, Trash2 } from "lucide-react";
+import { useEffect, useState } from "react";
+
+export default function PostsPage() {
+	const [posts, setPosts] = useState<Post[]>([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState<string | null>(null);
+
+	useEffect(() => {
+		fetchPosts();
+	}, []);
+
+	const fetchPosts = async () => {
+		try {
+			const response = await fetch("/api/posts");
+			if (!response.ok) {
+				throw new Error("Failed to fetch posts");
+			}
+			const data = await response.json();
+			setPosts(data.posts || []);
+		} catch (err) {
+			setError(err instanceof Error ? err.message : "An error occurred");
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	if (loading) {
+		return (
+			<div className="container mx-auto px-4 py-8">
+				<div className="space-y-6">
+					<div className="animate-pulse">
+						<div className="mb-4 h-8 w-48 rounded bg-muted"></div>
+						<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+							{[...Array(6)].map((_, i) => (
+								<div key={i} className="h-64 rounded-lg bg-muted"></div>
+							))}
+						</div>
+					</div>
+				</div>
+			</div>
+		);
 	}
 
-	const sql = await getDbConnection();
-	const posts = await sql`SELECT * from posts where user_id = ${user.id}`;
+	if (error) {
+		return (
+			<div className="container mx-auto px-4 py-8">
+				<Card className="border-destructive/20 bg-destructive/5">
+					<CardContent className="p-6">
+						<p className="text-destructive">Error: {error}</p>
+						<Button onClick={fetchPosts} className="mt-4">
+							Try Again
+						</Button>
+					</CardContent>
+				</Card>
+			</div>
+		);
+	}
 
 	return (
-		<MaxWidthWrapper className="mb-40">
-			<AnimationContainer delay={0.1}>
-				<div className="mx-auto flex max-w-lg flex-col items-center justify-center py-10">
-					<h1 className="!leading-tight mt-6 text-center font-heading font-semibold text-2xl md:text-4xl lg:text-5xl">
-						{posts.length === 0
-							? "You have no posts yet. Upload a video or audio to get started."
-							: "Blog"}
-					</h1>
-					<Link
-						href="/dashboard"
-						className="mt-6 text-center text-base text-muted-foreground md:text-lg"
+		<div className="container mx-auto px-4 py-8">
+			<motion.div
+				initial={{ opacity: 0, y: 20 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.5 }}
+				className="space-y-8"
+			>
+				<div className="flex items-center justify-between">
+					<div>
+						<h1 className="font-bold text-3xl tracking-tight">Your Posts</h1>
+						<p className="mt-2 text-muted-foreground">
+							Manage your AI-generated blog posts
+						</p>
+					</div>
+					<Badge variant="secondary" className="bg-primary/10 text-primary">
+						{posts.length} {posts.length === 1 ? "Post" : "Posts"}
+					</Badge>
+				</div>
+
+				{posts.length === 0 ? (
+					<Card
+						className={cn(
+							"border border-border/20 bg-background/60 backdrop-blur-sm",
+							"shadow-lg transition-all duration-300 hover:shadow-xl",
+						)}
 					>
-						<p className="flex items-center gap-2 text-muted-foreground text-sm hover:text-white hover:underline">
-							{posts.length === 0 && (
-								<>
-									Go to Dashboard <ArrowRight className="size-4" />
-								</>
-							)}
-						</p>
-					</Link>
-					{posts.length > 0 && (
-						<p className="flex items-center gap-2 text-muted-foreground text-sm">
-							Your blog posts
-						</p>
-					)}
-				</div>
-			</AnimationContainer>
-			{posts.map((post) => (
-				<div
-					key={post.id}
-					className="flex flex-col items-center justify-center pb-20"
-				>
-					<AnimationContainer delay={0.2} className="w-full pt-20">
-						<div className="mx-auto flex max-w-6xl flex-col items-center justify-center px-4 md:px-0">
-							<div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-								<MagicCard className="relative p-0 md:p-0">
-									<Card className="mx-auto w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
-										<CardHeader>
-											<CardTitle className="text-lg sm:text-xl md:text-2xl">
-												{removeMd(post.title)}
+						<CardContent className="p-12 text-center">
+							<FileText className="mx-auto mb-4 h-12 w-12 text-muted-foreground" />
+							<h3 className="mb-2 font-semibold text-lg">No posts yet</h3>
+							<p className="mb-6 text-muted-foreground">
+								Generate your first AI blog post to get started
+							</p>
+							<Button asChild>
+								<a href="/dashboard">Generate Blog Post</a>
+							</Button>
+						</CardContent>
+					</Card>
+				) : (
+					<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+						{posts.map((post, index) => (
+							<motion.div
+								key={post.id}
+								initial={{ opacity: 0, y: 20 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{ delay: index * 0.1, duration: 0.5 }}
+							>
+								<Card
+									className={cn(
+										"group relative overflow-hidden",
+										"border border-border/20 hover:border-primary/30",
+										"bg-background/60 backdrop-blur-sm hover:bg-background/70",
+										"shadow-lg hover:shadow-primary/10 hover:shadow-xl",
+										"transition-all duration-300 ease-out",
+										"cursor-pointer",
+									)}
+								>
+									<div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+									<CardHeader className="relative">
+										<div className="flex items-start justify-between gap-2">
+											<CardTitle className="line-clamp-2 font-semibold text-lg leading-tight transition-colors group-hover:text-primary/90">
+												{post.title}
 											</CardTitle>
-										</CardHeader>
-										<CardContent>
-											<p className="line-clamp-3 text-muted-foreground text-xs sm:text-sm md:text-base">
-												{post.content.split("\n").slice(1).join("\n")}
-											</p>
-										</CardContent>
-										<CardFooter className="mt-2 flex justify-end sm:mt-4">
-											<Link href={`/posts/${post.id}`}>
-												<div className="flex h-auto items-center p-0 text-primary text-xs hover:underline sm:text-sm">
-													Read More
-													<ArrowRight className="ml-1 h-3 w-3 sm:ml-2 sm:h-4 sm:w-4" />
-												</div>
-											</Link>
-										</CardFooter>
-									</Card>
-								</MagicCard>
-							</div>
-						</div>
-					</AnimationContainer>
-				</div>
-			))}
-		</MaxWidthWrapper>
+											<Badge variant="outline" className="shrink-0">
+												<FileText className="mr-1 h-3 w-3" />
+												Blog
+											</Badge>
+										</div>
+										<div className="flex items-center gap-2 text-muted-foreground text-sm">
+											<Calendar className="h-3 w-3" />
+											{format(new Date(post.createdAt), "MMM d, yyyy")}
+										</div>
+									</CardHeader>
+
+									<CardContent className="relative">
+										<p className="mb-4 line-clamp-3 text-muted-foreground text-sm">
+											{post.content?.substring(0, 150)}...
+										</p>
+
+										<div className="flex items-center justify-between">
+											<div className="flex items-center gap-2">
+												<Button variant="ghost" size="sm" className="h-8 px-2">
+													<Eye className="mr-1 h-3 w-3" />
+													View
+												</Button>
+												<Button variant="ghost" size="sm" className="h-8 px-2">
+													<Edit className="mr-1 h-3 w-3" />
+													Edit
+												</Button>
+											</div>
+											<Button
+												variant="ghost"
+												size="sm"
+												className="h-8 px-2 text-destructive hover:text-destructive"
+											>
+												<Trash2 className="h-3 w-3" />
+											</Button>
+										</div>
+									</CardContent>
+								</Card>
+							</motion.div>
+						))}
+					</div>
+				)}
+			</motion.div>
+		</div>
 	);
 }

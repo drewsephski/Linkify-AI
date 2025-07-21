@@ -80,14 +80,14 @@ const PricingCards = () => {
 						key={plan.name}
 						className={cn(
 							"flex w-full flex-col rounded-xl border-border",
-							plan.name === "Pro" && "border-2 border-purple-500",
+							plan.name === "Pro" && "border-2 border-blue-500",
 						)}
 					>
 						<CardHeader
 							className={cn(
 								"border-border border-b",
 								plan.name === "Pro"
-									? "bg-purple-500/[0.07]"
+									? "bg-blue-500/[0.07]"
 									: "bg-foreground/[0.03]",
 							)}
 						>
@@ -110,7 +110,7 @@ const PricingCards = () => {
 						<CardContent className="space-y-4 pt-6">
 							{plan.features.map((feature, index) => (
 								<div key={index} className="flex items-center gap-2">
-									<CheckCircleIcon className="h-4 w-4 text-purple-500" />
+									<CheckCircleIcon className="h-4 w-4 text-blue-500" />
 									<TooltipProvider>
 										<Tooltip delayDuration={0}>
 											<TooltipTrigger asChild>
@@ -140,7 +140,7 @@ const PricingCards = () => {
 								className={buttonVariants({
 									className:
 										plan.name === "Pro" &&
-										"bg-purple-500 text-white hover:bg-purple-500/80",
+										"bg-blue-500 text-white hover:bg-blue-500/80",
 								})}
 							>
 								{plan.btn.text}
@@ -158,14 +158,14 @@ const PricingCards = () => {
 						key={plan.name}
 						className={cn(
 							"flex w-full flex-col rounded-xl border-border",
-							plan.name === "Pro" && "border-2 border-purple-500",
+							plan.name === "Pro" && "border-2 border-blue-600",
 						)}
 					>
 						<CardHeader
 							className={cn(
 								"border-border border-b",
 								plan.name === "Pro"
-									? "bg-purple-500/[0.07]"
+									? "bg-blue-500/[0.07]"
 									: "bg-foreground/[0.03]",
 							)}
 						>
@@ -189,7 +189,7 @@ const PricingCards = () => {
 										animate={{ opacity: 1, y: 0 }}
 										exit={{ opacity: 0, y: 10 }}
 										transition={{ duration: 0.3, type: "spring", bounce: 0.25 }}
-										className="ml-2 rounded-md bg-purple-500 px-2 py-0.5 font-medium text-foreground text-sm"
+										className="ml-2 rounded-md bg-blue-500 px-2 py-0.5 font-medium text-foreground text-sm"
 									>
 										-12%
 									</motion.span>
@@ -199,7 +199,7 @@ const PricingCards = () => {
 						<CardContent className="space-y-4 pt-6">
 							{plan.features.map((feature, index) => (
 								<div key={index} className="flex items-center gap-2">
-									<CheckCircleIcon className="h-4 w-4 text-purple-500" />
+									<CheckCircleIcon className="h-4 w-4 text-blue-500" />
 									<TooltipProvider>
 										<Tooltip delayDuration={0}>
 											<TooltipTrigger asChild>
@@ -229,7 +229,7 @@ const PricingCards = () => {
 								className={buttonVariants({
 									className:
 										plan.name === "Pro" &&
-										"bg-purple-500 text-white hover:bg-purple-500/80",
+										"bg-blue-500 text-white hover:bg-blue-500/80",
 								})}
 							>
 								{plan.btn.text}

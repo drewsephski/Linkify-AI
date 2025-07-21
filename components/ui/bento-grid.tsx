@@ -62,22 +62,22 @@ export const CARDS = [
 				<Input placeholder="Type to search..." />
 				<div className="mt-1 cursor-pointer">
 					<div className="rounded-md px-4 py-2 hover:bg-muted">
-						Writora.xyz/hdf00c
+						Linkify.wiki/hdf00c
 					</div>
 					<div className="rounded-md px-4 py-2 hover:bg-muted">
-						Writora.xyz/sdv0n0
+						Linkify.wiki/sdv0n0
 					</div>
 					<div className="rounded-md px-4 py-2 hover:bg-muted">
-						Writora.xyz/03gndo
+						Linkify.wiki/03gndo
 					</div>
 					<div className="rounded-md px-4 py-2 hover:bg-muted">
-						Writora.xyz/09vmmw
+						Linkify.wiki/09vmmw
 					</div>
 					<div className="rounded-md px-4 py-2 hover:bg-muted">
-						Writora.xyz/s09vws
+						Linkify.wiki/s09vws
 					</div>
 					<div className="rounded-md px-4 py-2 hover:bg-muted">
-						Writora.xyz/sd8fv5
+						Linkify.wiki/sd8fv5
 					</div>
 				</div>
 			</Command>
@@ -150,8 +150,11 @@ const BentoCard = ({
 	<div
 		key={name}
 		className={cn(
-			"group relative col-span-3 flex flex-col justify-between overflow-hidden rounded-xl border border-border/60",
-			"bg-black [box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]",
+			"group relative col-span-3 flex flex-col justify-between overflow-hidden rounded-xl",
+			"border border-border/20 hover:border-border/40",
+			"bg-background/60 backdrop-blur-sm hover:bg-background/80",
+			"transition-all duration-300 hover:shadow-lg hover:shadow-primary/5",
+			"[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]",
 			className,
 		)}
 	>

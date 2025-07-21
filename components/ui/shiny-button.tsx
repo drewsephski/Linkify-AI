@@ -1,6 +1,6 @@
 "use client";
 
-import { type AnimationProps, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import React from "react";
 
 import { cn } from "@/utils";
@@ -11,20 +11,20 @@ const animationProps = {
 	whileTap: { scale: 0.95 },
 	transition: {
 		repeat: Infinity,
-		repeatType: "loop",
+		repeatType: "loop" as const,
 		repeatDelay: 1,
-		type: "spring",
+		type: "spring" as const,
 		stiffness: 20,
 		damping: 15,
 		mass: 2,
 		scale: {
-			type: "spring",
+			type: "spring" as const,
 			stiffness: 200,
 			damping: 5,
 			mass: 0.5,
 		},
 	},
-} as AnimationProps;
+};
 interface ShinyButtonProps {
 	children: React.ReactNode;
 	className?: string;

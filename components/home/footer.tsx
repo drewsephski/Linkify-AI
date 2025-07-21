@@ -1,5 +1,7 @@
-import { AnimationContainer, Icons } from "@/components/global";
+import { BrandLogo } from "@/components/brand";
+import { AnimationContainer } from "@/components/global";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
+import { LINKIFY_BRAND } from "@/utils/constants/brand";
 import { Github, Linkedin } from "lucide-react";
 import Link from "next/link";
 
@@ -12,31 +14,25 @@ const Footer = () => {
 				<AnimationContainer delay={0.1}>
 					<div className="flex flex-col items-start justify-start md:max-w-[200px]">
 						<div className="flex items-start">
-							<Icons.logo className="h-7 w-7" />
+							<BrandLogo size="md" showText />
 						</div>
 						<p className="mt-4 text-start text-muted-foreground text-sm">
-							Create your content with ease.
+							{LINKIFY_BRAND.tagline}
 						</p>
 						<span className="mt-4 flex items-center text-neutral-200 text-sm">
 							Made by{" "}
 							<Link
-								href="https://anayat.xyz"
+								href="https://drewsepsi.netlify.app"
 								className="ml-1 font-semibold hover:underline"
 							>
-								Anayat
+								Drew
 							</Link>
 						</span>
 						<div className="flex items-center gap-1 pt-2 text-muted-foreground">
-							<Link
-								href="https://github.com/anayatkhan1/Writora-AI"
-								target="_blank"
-							>
+							<Link href={LINKIFY_BRAND.social.github} target="_blank">
 								<Github className="size-4 hover:text-white" />
 							</Link>
-							<Link
-								href="https://www.linkedin.com/in/anayatkhan"
-								target="_blank"
-							>
+							<Link href={LINKIFY_BRAND.social.linkedin} target="_blank">
 								<Linkedin className="size-4 hover:text-white" />
 							</Link>
 						</div>
@@ -188,13 +184,14 @@ const Footer = () => {
 			<div className="mt-8 w-full border-border/40 border-t pt-4 md:flex md:items-center md:justify-between md:pt-8">
 				<AnimationContainer delay={0.6}>
 					<p className="mt-8 text-muted-foreground text-sm md:mt-0">
-						&copy; {new Date().getFullYear()} Writora INC. All rights reserved.
+						&copy; {new Date().getFullYear()} {LINKIFY_BRAND.name}. All rights
+						reserved.
 					</p>
 				</AnimationContainer>
 			</div>
 
 			<div className="hidden h-[20rem] items-center justify-center md:flex lg:h-[20rem]">
-				<TextHoverEffect text="Writora" />
+				<TextHoverEffect text="Linkify" />
 			</div>
 		</footer>
 	);

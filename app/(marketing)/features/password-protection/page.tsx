@@ -1,41 +1,167 @@
 import { AnimationContainer, MaxWidthWrapper } from "@/components/global";
+import DotCard from "@/components/mvpblocks/dot-card";
 import { Button } from "@/components/ui/button";
 import { LampContainer } from "@/components/ui/lamp";
 import MagicBadge from "@/components/ui/magic-badge";
 import { COMPANIES } from "@/utils";
-import { ArrowRightIcon } from "lucide-react";
+import {
+	ArrowRightIcon,
+	Eye,
+	Key,
+	Lock,
+	Shield,
+	Timer,
+	UserCheck,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-const LinkShorteningPage = () => {
+const PasswordProtectionPage = () => {
 	return (
 		<>
 			<MaxWidthWrapper>
 				<AnimationContainer delay={0.1} className="w-full">
-					<div className="mx-auto flex max-w-lg flex-col items-center justify-center py-10">
-						<MagicBadge title="Secure" />
+					<div className="mx-auto flex max-w-xl flex-col items-center justify-center py-10">
+						<MagicBadge title="Enterprise-Grade" />
 						<h1 className="!leading-tight mt-6 text-center font-heading font-semibold text-2xl md:text-4xl lg:text-5xl">
-							Frotify your content with a password
+							Secure Content with Smart Protection
 						</h1>
 						<p className="mt-6 text-center text-base text-muted-foreground md:text-lg">
-							Safeguard sensitive information with robust password protection,
-							providing peace of mind and enhanced security.
+							Protect your valuable content with advanced password protection
+							and access controls. Perfect for premium content, internal
+							documents, and exclusive materials.
 						</p>
 						<div className="mt-8 flex items-center justify-center gap-x-4">
 							<Button size="sm" asChild>
-								<Link href="/dashboard">Get started</Link>
+								<Link href="/dashboard">Secure Content</Link>
 							</Button>
 							<Button size="sm" variant="outline" asChild>
-								<Link href="/blog">Learn more</Link>
+								<Link href="/blog">Security Guide</Link>
 							</Button>
 						</div>
+					</div>
+				</AnimationContainer>
+				<AnimationContainer delay={0.25} className="w-full">
+					<div className="mx-auto max-w-6xl py-16">
+						<div className="mb-12 text-center">
+							<h2 className="mb-4 font-heading font-semibold text-3xl md:text-4xl">
+								Advanced Security Features
+							</h2>
+							<p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+								Comprehensive protection options to keep your content secure
+								while maintaining user experience
+							</p>
+						</div>
+
+						<div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+							<DotCard variant="subtle">
+								<div className="mb-4 flex items-center gap-3">
+									<Lock className="h-6 w-6 text-primary" />
+									<h3 className="font-semibold text-lg">Custom Passwords</h3>
+								</div>
+								<p className="mb-4 text-muted-foreground text-sm">
+									Set unique passwords for different content pieces or user
+									groups
+								</p>
+								<ul className="space-y-1 text-muted-foreground text-xs">
+									<li>• Individual content passwords</li>
+									<li>• Group-based access codes</li>
+									<li>• Temporary access tokens</li>
+								</ul>
+							</DotCard>
+
+							<DotCard variant="subtle">
+								<div className="mb-4 flex items-center gap-3">
+									<Timer className="h-6 w-6 text-primary" />
+									<h3 className="font-semibold text-lg">Time-Based Access</h3>
+								</div>
+								<p className="mb-4 text-muted-foreground text-sm">
+									Control when content is accessible with scheduled protection
+								</p>
+								<ul className="space-y-1 text-muted-foreground text-xs">
+									<li>• Expiring access links</li>
+									<li>• Scheduled content release</li>
+									<li>• Time-limited viewing</li>
+								</ul>
+							</DotCard>
+
+							<DotCard variant="subtle">
+								<div className="mb-4 flex items-center gap-3">
+									<UserCheck className="h-6 w-6 text-primary" />
+									<h3 className="font-semibold text-lg">User Management</h3>
+								</div>
+								<p className="mb-4 text-muted-foreground text-sm">
+									Manage who can access your protected content with user
+									controls
+								</p>
+								<ul className="space-y-1 text-muted-foreground text-xs">
+									<li>• User whitelist/blacklist</li>
+									<li>• Role-based permissions</li>
+									<li>• Access attempt logging</li>
+								</ul>
+							</DotCard>
+						</div>
+					</div>
+				</AnimationContainer>
+				<AnimationContainer delay={0.15} className="w-full">
+					<div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 py-12 md:grid-cols-3">
+						<DotCard variant="subtle" className="max-w-none">
+							<div className="mb-4 flex items-center gap-3">
+								<Shield className="h-6 w-6 text-primary" />
+								<h3 className="font-semibold text-lg">
+									Military-Grade Security
+								</h3>
+							</div>
+							<p className="mb-4 text-muted-foreground text-sm">
+								AES-256 encryption and secure authentication protocols to keep
+								your content safe
+							</p>
+							<ul className="space-y-1 text-muted-foreground text-xs">
+								<li>• AES-256 Encryption</li>
+								<li>• Secure Authentication</li>
+								<li>• Data Protection</li>
+								<li>• Security Compliance</li>
+							</ul>
+						</DotCard>
+						<DotCard variant="subtle" className="max-w-none">
+							<div className="mb-4 flex items-center gap-3">
+								<Key className="h-6 w-6 text-primary" />
+								<h3 className="font-semibold text-lg">Flexible Access</h3>
+							</div>
+							<p className="mb-4 text-muted-foreground text-sm">
+								Multiple authentication methods and custom access rules for
+								different user groups
+							</p>
+							<ul className="space-y-1 text-muted-foreground text-xs">
+								<li>• Multiple Auth Methods</li>
+								<li>• Custom Access Rules</li>
+								<li>• User Group Management</li>
+								<li>• Permission Controls</li>
+							</ul>
+						</DotCard>
+						<DotCard variant="subtle" className="max-w-none">
+							<div className="mb-4 flex items-center gap-3">
+								<Eye className="h-6 w-6 text-primary" />
+								<h3 className="font-semibold text-lg">Access Monitoring</h3>
+							</div>
+							<p className="mb-4 text-muted-foreground text-sm">
+								Track who accesses your content and when with comprehensive
+								monitoring tools
+							</p>
+							<ul className="space-y-1 text-muted-foreground text-xs">
+								<li>• Access Logs</li>
+								<li>• Real-time Monitoring</li>
+								<li>• User Activity Tracking</li>
+								<li>• Security Alerts</li>
+							</ul>
+						</DotCard>
 					</div>
 				</AnimationContainer>
 				<AnimationContainer delay={0.2} className="w-full">
 					<div className="mx-auto flex w-full max-w-4xl py-10">
 						<Image
 							src="/assets/password-protection.svg"
-							alt="Protect your blogs with a password"
+							alt="Advanced password protection and access control for content security"
 							width={80}
 							height={80}
 							className="h-auto w-full"
@@ -95,4 +221,4 @@ const LinkShorteningPage = () => {
 	);
 };
 
-export default LinkShorteningPage;
+export default PasswordProtectionPage;

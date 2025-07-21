@@ -12,21 +12,21 @@ const TermsPage = () => {
 					Last updated: 12th October 2024
 				</p>
 				<p className="mt-4">
-					Welcome to Writora. These terms and conditions outline the rules and
-					regulations for the use of Writora&apos;s website and services.
+					Welcome to Linkify. These terms and conditions outline the rules and
+					regulations for the use of Linkify&apos;s website and services.
 				</p>
 
 				<h2 className="mt-8 font-medium text-xl">Acceptance of Terms</h2>
 
 				<p className="mt-8 text-muted-foreground">
-					By accessing and using Writora, you accept and agree to be bound by
+					By accessing and using Linkify, you accept and agree to be bound by
 					these terms and conditions. If you do not agree to these terms, you
 					may not use our website or services.
 				</p>
 
 				<h2 className="mt-12 font-medium text-xl">Changes to Terms</h2>
 				<p className="mt-8 text-muted-foreground">
-					Writora reserves the right to modify these terms at any time. We will
+					Linkify reserves the right to modify these terms at any time. We will
 					notify you of any changes by updating the &quot;Last updated&quot;
 					data at the top of this page. You continued use of our website and
 					services after any modifications indicates your acceptance of the new
@@ -37,7 +37,7 @@ const TermsPage = () => {
 
 				<h3 className="mt-8 text-lg">Eligibility</h3>
 				<p className="mt-8">
-					To use Writora, you must be at least 18 years old and capable of
+					To use Linkify, you must be at least 18 years old and capable of
 					entering into a binding contact.
 				</p>
 
@@ -62,7 +62,7 @@ const TermsPage = () => {
 
 				<h3 className="mt-8 text-lg">Acceptable Use</h3>
 				<div className="mt-8">
-					You agree not to use Writora for any unlawful or prohibited
+					You agree not to use Linkify for any unlawful or prohibited
 					activities, including but not limited to:
 					<ul className="ml-8 list-disc text-muted-foreground">
 						<li>
@@ -72,7 +72,7 @@ const TermsPage = () => {
 						<li>Using the service to distribute spam or malicious content.</li>
 						<li>
 							Attempting to gain unauthorized access to other user accounts or
-							Writora&apos;s systems.
+							Linkify&apos;s systems.
 						</li>
 					</ul>
 				</div>
@@ -83,14 +83,14 @@ const TermsPage = () => {
 
 				<h3 className="mt-8 text-lg">Blog generating</h3>
 				<p className="mt-8 text-muted-foreground">
-					Writora provides a AI powered blog generater service that allows you
+					Linkify provides a AI powered blog generater service that allows you
 					to create content from the media. You agree not to use this service to
 					create links to illegal or harmful content.
 				</p>
 
 				<h3 className="mt-8 text-lg">Analytics</h3>
 				<p className="mt-8 text-muted-foreground">
-					Writora offers analytics for your content generation. You agree to use
+					Linkify offers analytics for your content generation. You agree to use
 					this data responsibly and comply with all applicable privacy laws.
 				</p>
 
@@ -113,7 +113,7 @@ const TermsPage = () => {
 
 				<p className="mt-8 text-muted-foreground">
 					You retain ownership of any content you upload or create using
-					Writora. However, by uploading or creating content, you grant Writora
+					Linkify. However, by uploading or creating content, you grant Linkify
 					a worldwide, non-exclusive, royalty-free license to use, reproduce,
 					and display your content as necessary to provide our services.
 				</p>
@@ -121,7 +121,7 @@ const TermsPage = () => {
 				<h2 className="mt-12 font-medium text-xl">Responsibility</h2>
 				<p className="mt-8 text-muted-foreground">
 					You are solely responsible for the content you upload or create.
-					Writora does not endorse or assume any liability for user content.
+					Linkify does not endorse or assume any liability for user content.
 				</p>
 
 				<h2 className="mt-12 font-medium text-xl">Privacy</h2>
@@ -136,7 +136,7 @@ const TermsPage = () => {
 
 				<h2 className="mt-12 font-medium text-xl">Termination</h2>
 				<p className="mt-8 text-muted-foreground">
-					Writora reserves the right to suspend or terminate your account at any
+					Linkify reserves the right to suspend or terminate your account at any
 					time, with or without notice, for any reason, including but not
 					limited to violation of these terms.
 				</p>
@@ -147,7 +147,7 @@ const TermsPage = () => {
 
 				<h3 className="mt-8 text-lg">No Warranties</h3>
 				<p className="mt-8 text-muted-foreground">
-					Writora is provided on an &quot;as is&quot; and &quot;as
+					Linkify is provided on an &quot;as is&quot; and &quot;as
 					available&quot; basis. We do not warrant that the service will be
 					uninterrupted, error-free, or free from viruses or other harmful
 					components.
@@ -155,7 +155,7 @@ const TermsPage = () => {
 
 				<h3 className="mt-8 text-lg">Limitation of Liability</h3>
 				<p className="mt-8 text-muted-foreground">
-					In no event shall Writora be liable for any indirect, incidental,
+					In no event shall Linkify be liable for any indirect, incidental,
 					special, or consequential damages arising out of or in connection with
 					your use of the service.
 				</p>
@@ -173,7 +173,7 @@ const TermsPage = () => {
 				</p>
 
 				<p className="mt-8 font-medium">
-					By using Writora, you acknowledge that you have read, understood, and
+					By using Linkify, you acknowledge that you have read, understood, and
 					agree to be bound by these terms and conditions.
 				</p>
 			</AnimationContainer>

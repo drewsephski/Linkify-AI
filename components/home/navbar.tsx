@@ -1,4 +1,5 @@
 "use client";
+import { BrandLogo } from "@/components/brand";
 import MobileNavbar from "@/components/home/mobile-navbar";
 import { buttonVariants } from "@/components/ui/button";
 import {
@@ -52,9 +53,11 @@ const Navbar = () => {
 				<MaxWidthWrapper className="flex items-center justify-between">
 					<div className="flex items-center space-x-12">
 						<Link href="/">
-							<span className="!leading-none font-bold font-heading text-lg">
-								Writora AI
-							</span>
+							<BrandLogo
+								size="md"
+								showText
+								className="transition-opacity hover:opacity-80"
+							/>
 						</Link>
 
 						<NavigationMenu className="hidden lg:flex">
@@ -130,7 +133,9 @@ const Navbar = () => {
 								<div className="flex items-center gap-3">
 									<Link
 										href={pathname === "/dashboard" ? "/posts" : "/dashboard"}
-										className={`${buttonVariants({ size: "sm" })} font-semibold`}
+										className={`${buttonVariants({
+											size: "sm",
+										})} font-semibold`}
 									>
 										{pathname === "/dashboard"
 											? "Your Posts"
@@ -173,18 +178,20 @@ const ListItem = React.forwardRef<
 					href={href!}
 					ref={ref}
 					className={cn(
-						"block select-none space-y-1 rounded-lg p-3 leading-none no-underline outline-none transition-all duration-100 ease-out hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+						"group block select-none space-y-1 rounded-lg p-3 leading-none no-underline outline-none transition-all duration-200 ease-out hover:bg-[hsl(var(--linkify-dark-blue))] hover:text-white focus:bg-[hsl(var(--linkify-dark-blue))] focus:text-white",
 						className,
 					)}
 					{...props}
 				>
-					<div className="flex items-center space-x-2 text-neutral-300">
-						<Icon className="h-4 w-4" />
-						<h6 className="!leading-none font-medium text-sm">{title}</h6>
+					<div className="flex items-center space-x-2 text-neutral-300 transition-colors duration-200 group-hover:text-white">
+						<Icon className="h-4 w-4 transition-colors duration-200" />
+						<h6 className="!leading-none font-medium text-sm transition-colors duration-200">
+							{title}
+						</h6>
 					</div>
 					<p
 						title={children! as string}
-						className="line-clamp-1 text-muted-foreground text-sm leading-snug"
+						className="line-clamp-1 text-muted-foreground text-sm leading-snug transition-colors duration-200 group-hover:text-neutral-200"
 					>
 						{children}
 					</p>

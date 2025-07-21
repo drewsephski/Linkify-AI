@@ -1,14 +1,20 @@
 import { Metadata } from "next";
+import { LINKIFY_BRAND } from "../constants/brand";
 
 export const generateMetadata = ({
-	title = `${process.env.NEXT_PUBLIC_APP_NAME} - The AI-Powered Blog generator Platform for Businesses`,
-	description = `${process.env.NEXT_PUBLIC_APP_NAME} is the blog generator platform for content creator. It helps you build, brand, and track your content.`,
-	image = "/thumbnail.png",
+	title = `${LINKIFY_BRAND.name} - ${LINKIFY_BRAND.tagline}`,
+	description = LINKIFY_BRAND.description,
+	image = LINKIFY_BRAND.assets.images.og,
 	icons = [
 		{
 			rel: "apple-touch-icon",
 			sizes: "32x32",
 			url: "/apple-touch-icon.png",
+		},
+		{
+			rel: "icon",
+			type: "image/svg+xml",
+			url: LINKIFY_BRAND.assets.logo.favicon,
 		},
 		{
 			rel: "icon",
@@ -35,14 +41,30 @@ export const generateMetadata = ({
 	openGraph: {
 		title,
 		description,
-		...(image && { images: [{ url: image }] }),
+		siteName: LINKIFY_BRAND.name,
+		locale: "en_US",
+		type: "website",
+		...(image && {
+			images: [
+				{
+					url: image,
+					width: 1260,
+					height: 800,
+					alt: `${LINKIFY_BRAND.name} - ${LINKIFY_BRAND.tagline}`,
+				},
+			],
+		}),
 	},
 	twitter: {
 		title,
 		description,
+		site: LINKIFY_BRAND.social.twitter,
+		creator: LINKIFY_BRAND.social.twitter,
 		...(image && { card: "summary_large_image", images: [image] }),
-		creator: "@Anayat",
 	},
-	// metadataBase: new URL(process.env.APP_DOMAIN!),
+	metadataBase: new URL(LINKIFY_BRAND.url),
+	alternates: {
+		canonical: LINKIFY_BRAND.url,
+	},
 	...(noIndex && { robots: { index: false, follow: false } }),
 });
