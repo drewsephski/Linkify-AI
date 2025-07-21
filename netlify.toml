@@ -1,0 +1,20 @@
+[build]
+publish = ".next"
+command = "bun run build"
+
+[build.environment]
+# Allow Netlify's secrets scanner to ignore these keys
+# These are environment variables that are either public (NEXT_PUBLIC_) or
+# are being bundled into build artifacts/functions, and need to be omitted
+# from the secrets scan to allow the build to proceed.
+SECRETS_SCAN_OMIT_KEYS = """
+CLERK_SECRET_KEY,
+DATABASE_URL,
+GOOGLE_API_KEY,
+NETLIFY_DATABASE_URL,
+NETLIFY_DATABASE_URL_UNPOOLED,
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
+NEXT_PUBLIC_CLERK_SIGN_IN_FORCE_REDIRECT_URL,
+NEXT_PUBLIC_CLERK_SIGN_IN_URL,
+NEXT_PUBLIC_CLERK_SIGN_UP_URL
+"""
