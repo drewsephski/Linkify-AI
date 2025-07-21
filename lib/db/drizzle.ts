@@ -14,13 +14,4 @@ if (!url) {
 const sql = neon(url + "?sslmode=require");
 _db = drizzle(sql, { schema });
 
-export const db = new Proxy({} as ReturnType<typeof drizzle>, {
-	get(target, prop) {
-		if (!_db) {
-			throw new Error(
-				"Database not initialized. Ensure this file is imported and processed at application startup.",
-			);
-		}
-		return (_db as any)[prop];
-	},
-});
+export const db = _db as ReturnType<typeof drizzle>;
